@@ -3,19 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Para Sofi ❤️</title> 	
+  <title>Para Sofi ❤️</title>
+
   <style>
-    body{
+    *{
       margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
       height:100vh;
       display:flex;
       justify-content:center;
       align-items:center;
       flex-direction:column;
-      background:#0b1028;
+      background:linear-gradient(180deg,#08122e,#101c4a);
       color:white;
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      overflow:hidden;
+      text-align:center;
+      padding:30px;
+      position:relative;
     }
+
+    /* Estrellas */
+    body::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:radial-gradient(white 1px, transparent 1px);
+      background-size:35px 35px;
+      opacity:0.35;
+      animation:starsMove 30s linear infinite;
+      z-index:0;
+    }
+
+    @keyframes starsMove{
+      from{ transform:translateY(0); }
+      to{ transform:translateY(30px); }
+    }
+
+    /* Luna */
+    .moon{
+      position:absolute;
+      top:40px;
+      right:30px;
+      width:80px;
+      height:80px;
+      border-radius:50%;
+      background:radial-gradient(circle,#fffbe8,#ffe8a3);
+      box-shadow:0 0 30px rgba(255,240,180,.7);
+      z-index:1;
+    }
+
+    h1,p,button{
+      position:relative;
+      z-index:2;
+    }
+
+    h1{
+      font-size:2.2rem;
+      margin-bottom:18px;
+    }
+
+    p{
+      font-size:1.1rem;
+      line-height:1.6;
+      max-width:320px;
+      margin-bottom:40px;
+    }
+
     button{
       padding:16px 28px;
       border:none;
@@ -23,49 +81,102 @@
       background:#ff7cb3;
       color:white;
       font-size:18px;
+      box-shadow:0 10px 30px rgba(255,124,179,.4);
+      transition:.25s;
+    }
+
+    button:active{
+      transform:scale(.96);
+    }
+
+    /* Corazones flotando */
+    .heart{
+      position:fixed;
+      bottom:-30px;
+      color:#ff9ec7;
+      font-size:22px;
+      animation:floatUp linear forwards;
+      opacity:0.8;
+      z-index:1;
+      pointer-events:none;
+    }
+
+    @keyframes floatUp{
+      from{
+        transform:translateY(0) scale(0.8);
+        opacity:0;
+      }
+      10%{
+        opacity:0.9;
+      }
+      to{
+        transform:translateY(-110vh) scale(1.3);
+        opacity:0;
+      }
     }
   </style>
 </head>
+
 <body>
 
+  <div class="moon"></div>
+
   <h1 id="title">Sofi...</h1>
-  <p id="subtitle">Hice algo muy especial para vos ❤️</p>
-  <button id="startButton">✨ Abrir mi regalo ✨</button>
+
+  <p id="subtitle">
+    Hice algo muy especial para vos ❤️
+  </p>
+
+  <button id="startButton">
+    ✨ Abrir mi regalo ✨
+  </button>
 
   <script>
-function crearCorazon(){
 
-  const heart = document.createElement('div');
+    // Corazones flotando
+    function crearCorazon(){
 
-  heart.className = 'heart';
+      const heart = document.createElement('div');
 
-  heart.textContent = '❤';
+      heart.className = 'heart';
 
-  heart.style.left = Math.random() * 100 + 'vw';
+      heart.textContent = '❤';
 
-  heart.style.animationDuration =
-    (4 + Math.random() * 4) + 's';
+      heart.style.left = Math.random()*100 + 'vw';
 
-  document.body.appendChild(heart);
+      heart.style.animationDuration =
+        (4 + Math.random()*4) + 's';
 
-  setTimeout(() => {
+      document.body.appendChild(heart);
 
-    heart.remove();
+      setTimeout(() => {
 
-  }, 8000);
+        heart.remove();
 
-}
+      },8000);
 
-setInterval(crearCorazon, 700);	  
+    }
+
+    setInterval(crearCorazon,700);
+
+    // Botón
     const title = document.getElementById('title');
+
     const subtitle = document.getElementById('subtitle');
+
     const button = document.getElementById('startButton');
 
-    button.onclick = function () {
+    button.onclick = function(){
+
       title.textContent = 'Nuestra historia empieza ahora ❤️';
-      subtitle.textContent = 'Y muy pronto aparecerán nuestros gatitos.';
+
+      subtitle.textContent =
+      'Y muy pronto aparecerán nuestros gatitos.';
+
       button.style.display = 'none';
+
     };
+
   </script>
 
 </body>
