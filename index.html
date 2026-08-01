@@ -242,3 +242,109 @@ button{
   </div>
   <p id="loveText">Como ellos, yo siempre voy a elegir acercarme a vos.</p>
 </div>
+<div id="gift" class="screen hidden">
+  <h1>Tengo una sorpresa para vos...</h1>
+  <div class="gift" id="giftBox">🎁</div>
+  <p>Tocá el regalo</p>
+</div>
+<div id="letter" class="screen hidden">
+  <h1>Para vos, mi amor ❤️</h1>
+  <div class="envelope">
+    <div class="flap"></div>
+<div class="letter">
+  <p><strong>Hola mi amor, feliz Día de la Novia.</strong></p>
+  <p>
+    La verdad no conozco mucho de fechas o cosas por el estilo,
+    pero por vos me aprendo todas.
+  </p>
+  <p>
+    Te quería agradecer por enseñarme a amar de verdad, a confiar.
+    Cada día me siento agradecido por la grandiosa novia que tengo:
+    hermosa, inteligente, atlética, siempre pensás en tu familia y amigos
+    y cuidás a todos con un amor que admiro muchísimo.
+  </p>
+  <p>
+    Sos un ejemplo en todo sentido.
+    Siempre aprendo de vos y me ayudaste a mejorar en todo.
+    Te amo y estoy totalmente agradecido con vos.
+  </p>
+  <p>
+    No hay momentos malos a tu lado; incluso cuando algo es difícil,
+    nuestro ambiente cambia.
+    Amo la energía y la sinergia que creamos juntos.
+    Es única.
+  </p>
+  <p>
+    Hasta hacer nada con vos es todo.
+    Lo mínimo se vuelve grandioso.
+  </p>
+  <p>
+    Aún tengo mis cosas por arreglar,
+    pero quiero mejorar para ser el novio que merecés.
+  </p>
+  <p>
+    Gracias por aparecer en mi vida.
+    Sos vos con quien quiero construir un futuro,
+    porque siento que todo lo podemos hablar.
+  </p>
+  <p>
+    Obviamente nos podemos enojar,
+    pero siempre que me pidas amor,
+    jamás te lo voy a negar.
+  </p>
+  <p>
+    Un beso y un abrazo mío siempre serán tuyos.
+  </p>
+  <p>
+    Amo cómo buscamos lo mejor del otro
+    y cómo queremos mejorar juntos.
+  </p>
+  <p><strong>Te adoro, mi vida. Feliz Día de la Novia.</strong></p>
+  <p><strong>Te ama Jeffry, y muchísimo.</strong></p>
+</div>
+  </div>
+</div>
+<script>
+function heart(){
+  const h=document.createElement('div');
+  h.className='heart';
+  h.textContent='❤';
+  h.style.left=Math.random()*100+'vw';
+  h.style.animationDuration=(4+Math.random()*3)+'s';
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),7000);
+}
+setInterval(heart,650);
+const intro=document.getElementById('intro');
+const cats=document.getElementById('cats');
+const gift=document.getElementById('gift');
+const letter=document.getElementById('letter');
+const gray=document.getElementById('gray');
+const white=document.getElementById('white');
+const loveText=document.getElementById('loveText');
+const bigHeart=document.getElementById('bigHeart');
+document.getElementById('start').onclick=()=>{
+  intro.classList.add('hidden');
+  cats.classList.remove('hidden');
+  setTimeout(()=>{
+    gray.style.left='100px';
+    white.style.right='100px';
+  },200);
+  setTimeout(()=>{
+    gray.style.transform='scale(1.08)';
+    white.style.transform='scale(1.08)';
+    bigHeart.classList.add('show');
+    loveText.classList.add('show');
+  },2600);
+  setTimeout(()=>{
+    cats.classList.add('hidden');
+    gift.classList.remove('hidden');
+  },4300);
+};
+document.getElementById('giftBox').onclick=()=>{
+  gift.classList.add('hidden');
+  letter.classList.remove('hidden');
+};
+</script>
+</body>
+</html>
