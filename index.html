@@ -346,5 +346,19 @@ document.getElementById('giftBox').onclick=()=>{
   letter.classList.remove('hidden');
 };
 </script>
+  <audio id="music" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const audio = document.getElementById('music');
+const startButton = document.getElementById('start');
+
+if (startButton && audio) {
+  startButton.addEventListener('click', () => {
+    audio.play();
+  });
+}
+</script>
 </body>
 </html>
