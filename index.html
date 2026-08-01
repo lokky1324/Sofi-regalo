@@ -1,72 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Para Sofi ❤️</title>
-
-    <link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Sofi ❤️</title>
+  <style>
+    body{
+      margin:0;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      background:#0b1028;
+      color:white;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+    button{
+      padding:16px 28px;
+      border:none;
+      border-radius:999px;
+      background:#ff7cb3;
+      color:white;
+      font-size:18px;
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- Fondo animado -->
-    <div id="background">
+  <h1 id="title">Sofi...</h1>
+  <p id="subtitle">Hice algo muy especial para vos ❤️</p>
+  <button id="startButton">✨ Abrir mi regalo ✨</button>
 
-        <div id="stars"></div>
+  <script>
+    const title = document.getElementById('title');
+    const subtitle = document.getElementById('subtitle');
+    const button = document.getElementById('startButton');
 
-        <div id="moon"></div>
-
-        <div id="floating-hearts"></div>
-
-    </div>
-
-    <!-- Pantalla inicial -->
-
-    <section id="intro">
-
-        <h1 id="title"></h1>
-
-        <p id="subtitle"></p>
-
-        <button id="startButton">
-            ✨ Abrir mi regalo ✨
-        </button>
-
-    </section>
-
-    <!-- Escena de los gatitos (todavía oculta) -->
-
-    <section id="catsScene" class="hidden">
-
-    </section>
-
-    <!-- Carta (todavía oculta) -->
-
-    <section id="letterScene" class="hidden">
-
-    </section>
-
-    <!-- Música -->
-
-    <audio id="music" loop>
-
-        <source src="assets/music/song.mp3" type="audio/mpeg">
-
-    </audio>
-
-    <script src="config.js"></script>
-
-    <script src="script.js"></script>
+    button.onclick = function () {
+      title.textContent = 'Nuestra historia empieza ahora ❤️';
+      subtitle.textContent = 'Y muy pronto aparecerán nuestros gatitos.';
+      button.style.display = 'none';
+    };
+  </script>
 
 </body>
-
-</html> 
+</html>
 			
 
 
