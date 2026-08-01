@@ -1,145 +1,288 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Para Sofi ❤️</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Sofi ❤️</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:linear-gradient(180deg,#08122e,#16235c);
+  color:white;
+  overflow:hidden;
+  height:100vh;
+}
+
+/* Fondo con estrellas */
+
+.sky::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:radial-gradient(white 1px, transparent 1px);
+  background-size:32px 32px;
+  opacity:.35;
+  animation:stars 20s linear infinite;
+}
+
+@keyframes stars{
+  from{ transform:translateY(0); }
+  to{ transform:translateY(24px); }
+}
+
+/* Luna */
+
+.moon{
+  position:fixed;
+  top:28px;
+  right:28px;
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  background:radial-gradient(circle,#fffbe8,#ffe8a3);
+  box-shadow:0 0 28px rgba(255,240,180,.65);
+}
+
+/* Pantallas */
+
+.screen{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:24px;
+}
+
+.hidden{
+  display:none;
+}
+
+h1{
+  font-size:2rem;
+  margin-bottom:14px;
+}
+
+p{
+  max-width:320px;
+  line-height:1.6;
+  margin-bottom:22px;
+}
+
+button{
+  background:#ff7cb3;
+  color:#fff;
+  border:none;
+  border-radius:999px;
+  padding:16px 28px;
+  font-size:18px;
+  box-shadow:0 10px 30px rgba(255,124,179,.35);
+}
+
+/* Corazones */
+
+.heart{
+  position:fixed;
+  bottom:-20px;
+  color:#ff9ec7;
+  animation:up linear forwards;
+  pointer-events:none;
+}
+
+@keyframes up{
+  from{
+    transform:translateY(0) scale(.8);
+    opacity:0;
+  }
+  10%{
+    opacity:.9;
+  }
+  to{
+    transform:translateY(-110vh) scale(1.3);
+    opacity:0;
+  }
+}
+
+/* Escena de los gatitos */
+
+.cats{
+  position:relative;
+  width:340px;
+  height:220px;
+  margin:10px 0 20px;
+}
+
+.cat{
+  position:absolute;
+  width:120px;
+  height:120px;
+  transition:all 2.6s ease;
+}
+
+#gray{
+  left:-150px;
+}
+
+#white{
+  right:-150px;
+}
+
+.cat svg{
+  width:120px;
+  height:120px;
+}
+
+.cat-body{
+  filter:drop-shadow(0 10px 18px rgba(0,0,0,.18));
+}
+
+.blush{
+  fill:#f7b6c7;
+}
+
+.eye{
+  fill:#333;
+}
+
+.nose{
+  fill:#f7a6b8;
+}
+
+#bigHeart{
+  position:absolute;
+  left:50%;
+  top:10px;
+  transform:translateX(-50%) scale(0);
+  font-size:38px;
+  transition:transform .5s ease;
+}
+
+#bigHeart.show{
+  transform:translateX(-50%) scale(1);
+}
+
+#loveText{
+  opacity:0;
+  transition:opacity .8s ease;
+}
+
+#loveText.show{
+  opacity:1;
+}
+
+.gift{
+  width:120px;
+  height:120px;
+  border-radius:26px;
+  background:#ff9ec7;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:58px;
+  box-shadow:0 0 24px rgba(255,158,199,.55);
+  animation:floatGift 2.5s ease-in-out infinite;
+  margin:18px 0;
+}
+
+@keyframes floatGift{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-8px); }
+}
+
+.envelope{
+  width:280px;
+  height:190px;
+  background:#fff4f7;
+  border-radius:16px;
+  position:relative;
+  color:#333;
+  box-shadow:0 12px 28px rgba(0,0,0,.25);
+}
+
+.flap{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:84px;
+  background:#ffd6e5;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+}
+
+.letter{
+  position:absolute;
+  left:12px;
+  right:12px;
+  top:62px;
+  bottom:12px;
+  background:#fff;
+  border-radius:10px;
+  padding:12px;
+  overflow:auto;
+  text-align:left;
+  font-size:14px;
+  line-height:1.45;
+}
+</style>
 </head>
 <body>
 
-  <div class="sky"></div>
-  <div class="moon"></div>
+<div class="sky"></div>
+<div class="moon"></div>
 
-  <!-- Pantalla inicial -->
-  <div id="intro" class="screen">
-    <h1>Sofi...</h1>
-    <p>Hice algo muy especial para vos ❤️</p>
-    <button id="start">✨ Abrir mi regalo ✨</button>
-  </div>
+<div id="intro" class="screen">
+  <h1>Sofi...</h1>
+  <p>Hice algo muy especial para vos ❤️</p>
+  <button id="start">✨ Abrir mi regalo ✨</button>
+</div>
 
-  <!-- Gatitos -->
-  <div id="cats" class="screen hidden">
-    <h1>Nuestra historia ❤️</h1>
+<div id="cats" class="screen hidden">
+  <h1>Nuestra historia ❤️</h1>
 
-    <div class="cats">
+  <div class="cats">
 
-      <div id="gray" class="cat">
-        <svg viewBox="0 0 120 120">
-          <polygon points="24,26 44,8 50,32" fill="#9ea5af"/>
-          <polygon points="96,26 76,8 70,32" fill="#9ea5af"/>
-          <circle cx="60" cy="60" r="38" fill="#b9bfc8"/>
-          <circle cx="47" cy="56" r="4" fill="#333"/>
-          <circle cx="73" cy="56" r="4" fill="#333"/>
-          <ellipse cx="60" cy="67" rx="5" ry="4" fill="#f7a6b8"/>
-          <circle cx="42" cy="66" r="5" fill="#f7b6c7"/>
-          <circle cx="78" cy="66" r="5" fill="#f7b6c7"/>
-        </svg>
-      </div>
+    <div id="bigHeart">💖</div>
 
-      <div id="white" class="cat">
-        <svg viewBox="0 0 120 120">
-          <polygon points="24,26 44,8 50,32" fill="#f0f0f0"/>
-          <polygon points="96,26 76,8 70,32" fill="#f0f0f0"/>
-          <circle cx="60" cy="60" r="38" fill="#ffffff"/>
-          <circle cx="47" cy="56" r="4" fill="#333"/>
-          <circle cx="73" cy="56" r="4" fill="#333"/>
-          <ellipse cx="60" cy="67" rx="5" ry="4" fill="#f7a6b8"/>
-          <circle cx="42" cy="66" r="5" fill="#ffd0dd"/>
-          <circle cx="78" cy="66" r="5" fill="#ffd0dd"/>
-        </svg>
-      </div>
-
+    <div id="gray" class="cat">
+      <svg viewBox="0 0 120 120">
+        <g class="cat-body">
+          <polygon points="22,26 44,8 50,34" fill="#9ea5af"/>
+          <polygon points="98,26 76,8 70,34" fill="#9ea5af"/>
+          <circle cx="60" cy="62" r="38" fill="#b9bfc8"/>
+          <circle class="eye" cx="48" cy="56" r="4"/>
+          <circle class="eye" cx="72" cy="56" r="4"/>
+          <ellipse class="nose" cx="60" cy="67" rx="5" ry="4"/>
+          <circle class="blush" cx="42" cy="66" r="5"/>
+          <circle class="blush" cx="78" cy="66" r="5"/>
+        </g>
+      </svg>
     </div>
 
-    <p>Como ellos, yo siempre voy a elegir acercarme a vos.</p>
-  </div>
-
-  <!-- Regalo -->
-  <div id="gift" class="screen hidden">
-    <h1>Tengo una sorpresa para vos...</h1>
-
-    <div class="gift" id="giftBox">🎁</div>
-
-    <p>Tocá el regalo</p>
-  </div>
-
-  <!-- Carta -->
-  <div id="letter" class="screen hidden">
-    <h1>Para vos, mi amor ❤️</h1>
-
-    <div class="envelope">
-      <div class="flap"></div>
-
-      <div class="letter">
-
-        <p><strong>Hola mi amor, feliz Día de la Novia.</strong></p>
-
-        <p>
-          La verdad no conozco mucho de fechas o cosas por el estilo,
-          pero por vos me aprendo todas.
-        </p>
-
-        <p>
-          Te quería agradecer por enseñarme a amar de verdad, a confiar.
-          Cada día me siento agradecido por la grandiosa novia que tengo:
-          hermosa, inteligente, atlética, siempre pensás en tu familia y amigos
-          y cuidás a todos con un amor que admiro muchísimo.
-        </p>
-
-        <p>
-          Sos un ejemplo en todo sentido.
-          Siempre aprendo de vos y me ayudaste a mejorar en todo.
-          Te amo y estoy totalmente agradecido con vos.
-        </p>
-
-        <p>
-          No hay momentos malos a tu lado; incluso cuando algo es difícil,
-          nuestro ambiente cambia.
-          Amo la energía y la sinergia que creamos juntos.
-          Es única.
-        </p>
-
-        <p>
-          Hasta hacer nada con vos es todo.
-          Lo mínimo se vuelve grandioso.
-        </p>
-
-        <p>
-          Aún tengo mis cosas por arreglar,
-          pero quiero mejorar para ser el novio que merecés.
-        </p>
-
-        <p>
-          Gracias por aparecer en mi vida.
-          Sos vos con quien quiero construir un futuro,
-          porque siento que todo lo podemos hablar.
-        </p>
-
-        <p>
-          Obviamente nos podemos enojar,
-          pero siempre que me pidas amor,
-          jamás te lo voy a negar.
-        </p>
-
-        <p>
-          Un beso y un abrazo mío siempre serán tuyos.
-        </p>
-
-        <p>
-          Amo cómo buscamos lo mejor del otro
-          y cómo queremos mejorar juntos.
-        </p>
-
-        <p><strong>Te adoro, mi vida. Feliz Día de la Novia.</strong></p>
-
-        <p><strong>Te ama Jeffry, y muchísimo.</strong></p>
-
-      </div>
+    <div id="white" class="cat">
+      <svg viewBox="0 0 120 120">
+        <g class="cat-body">
+          <polygon points="22,26 44,8 50,34" fill="#f0f0f0"/>
+          <polygon points="98,26 76,8 70,34" fill="#f0f0f0"/>
+          <circle cx="60" cy="62" r="38" fill="#ffffff"/>
+          <circle class="eye" cx="48" cy="56" r="4"/>
+          <circle class="eye" cx="72" cy="56" r="4"/>
+          <ellipse class="nose" cx="60" cy="67" rx="5" ry="4"/>
+          <circle class="blush" cx="42" cy="66" r="5"/>
+          <circle class="blush" cx="78" cy="66" r="5"/>
+        </g>
+      </svg>
     </div>
+
   </div>
 
-  <script src="script.js"></script>
-
-</body>
-</html>
+  <p id="loveText">Como ellos, yo siempre voy a elegir acercarme a vos.</p>
+</div>
